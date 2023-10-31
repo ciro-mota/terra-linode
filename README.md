@@ -15,12 +15,6 @@
 
 This project aims to provision instances on Linode with the help of Terraform.
 
-## 🎁 Sponsoring
-
-If you like this work, give me it a star on GitHub, and consider supporting it buying me a coffee:
-
-[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/donate/?business=VUS6R8TX53NTS&no_recurring=0&currency_code=USD)
-
 ## ⚠️ Caution!
 
 Linode charges you for the use of VMs [even if they are in a powered off state](https://www.linode.com/docs/products/platform/billing/#will-i-be-billed-for-powered-off-or-unused-services) and this can cause a huge cost issue for some people. So you can never forget to `destroy` your instances after some testing.
@@ -54,10 +48,37 @@ To work with these settings, uncomment line `10` in the `instance.tf` file.
 
 ## 💾 Remote state
 
-Linode clearly does not have an official backend for remote state so adaptation is necessary to work with this feature.
+Linode clearly does not have an official backend for remote state so adaptation is necessary to work with this feature. For the two options below, you must manually create a bucket in Object Storage and [create Access Keys](https://www.linode.com/docs/products/storage/object-storage/guides/access-keys/) for it.
 
-- You will need to have `linode-cli` and the `boto3` library installed.
+### Option A
+
+Linode Object Storage supports S3-compatible applications, so the `aws cli` is supported for file handling with Linode.
+
+- Install it.
+- Run the command `aws configure` for configuration.
+- When prompted, enter the `aws_access_key_id` and `aws_secret_access_key` provided by Linode. The region field can be left blank.
+- Activate bucket versioning with the command below:
+
+```bash
+aws s3api put-bucket-versioning --endpoint=<your-endpoint-region>.linodeobjects.com --bucket=<your-bucket-name> --versioning-configuration Status=Enabled
+```
+
 - In the `resources.tf` file, uncomment lines `45` to `52`.
-- On line `49` change the `cluster` and bucket name to the ones you created.
+- On line `49` change the to the **name of your bucket** and the **region** chosen when creating the bucket.
 
-Terraform will, after provisioning the requested resources, run `linode-cli` to send the `terraform.tfstate` file to a previously created bucket.
+Terraform will, after provisioning the requested resources run `aws-cli` to send the `terraform.tfstate` file to a previously created bucket and maintaining data persistence after `destroy`.
+
+### Option B
+
+You can also use Linode's own tool to handle files in Object Storage. You will need to have `linode-cli` configured and the `boto3` library installed.
+
+- In the `resources.tf` file, uncomment lines `54` to `61`.
+- On line `58` change the `cluster` parameters to the **name of your bucket** and the **region** chosen when creating the bucket.
+
+Terraform will, after provisioning the requested resources, run `linode-cli` to send the `terraform.tfstate` file to a previously created bucket. This method unfortunately **does not persist the files in the bucket** after `destroy`.
+
+## 🎁 Sponsoring
+
+If you like this work, give me it a star on GitHub, and consider supporting it buying me a coffee:
+
+[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/donate/?business=VUS6R8TX53NTS&no_recurring=0&currency_code=USD)
