@@ -46,7 +46,16 @@ EOF
 
 #  provisioner "local-exec" {
 
-#     command = "linode-cli obj put terraform.tfstate --cluster us-east-1 my-terra-bucket-br"
+#     command = "aws s3 cp terraform.tfstate s3://<your-bucket-name> --endpoint=https://<your-endpoint-region>.linodeobjects.com"
+#   }
+#   depends_on = [linode_instance.terraform-github]
+# }
+
+# resource "null_resource" "object" {
+
+#  provisioner "local-exec" {
+
+#     command = "linode-cli obj put terraform.tfstate --cluster <your-region> <your-bucket-name>"
 #   }
 #   depends_on = [linode_instance.terraform-github]
 # }
