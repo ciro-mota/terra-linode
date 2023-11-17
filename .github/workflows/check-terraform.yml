@@ -2,6 +2,8 @@ name: Check Terraform code
 
 on:
   push:
+    paths:
+      - '**.tf'
 
 jobs:
   check-terraform:
