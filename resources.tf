@@ -14,9 +14,9 @@ resource "linode_stackscript" "stack" {
 bash <(curl -sk https://raw.githubusercontent.com/ciro-mota/terra-linode/main/scripts/nginx.sh)
 EOF
   images = ["linode/ubuntu23.10", "linode/ubuntu23.04", "linode/ubuntu22.10",
-  "linode/ubuntu22.04", "linode/ubuntu20.04", "linode/ubuntu18.04",
-  "linode/ubuntu16.04lts", "linode/debian12", "linode/debian11",
-  "linode/debian10", "linode/almalinux8", "linode/almalinux9",
+    "linode/ubuntu22.04", "linode/ubuntu20.04", "linode/ubuntu18.04",
+    "linode/ubuntu16.04lts", "linode/debian12", "linode/debian11",
+    "linode/debian10", "linode/almalinux8", "linode/almalinux9",
   "linode/fedora37", "linode/fedora38", "linode/rocky8", "linode/rocky9"]
 }
 
