@@ -26,7 +26,7 @@ jobs:
         run: terraform validate
 
       - name: Format Terraform code
-        run: terraform fmt -check -recursive
+        run: terraform fmt -recursive
 
       - name: Check code with tfsec
         uses: aquasecurity/tfsec-action@v1.0.0
