@@ -28,7 +28,7 @@ EOF
 
 tee -a playbook.yml <<'EOF'
 ---
-- name: "Provision Image"
+- name: "Provision Nginx"
   hosts: localhost
   become: true
   roles:
