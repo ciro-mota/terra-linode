@@ -5,6 +5,12 @@ variable "LINODE_CLI_TOKEN" {
 variable "public_key_path" {
   sensitive = true
 }
+variable "access_key_id" {
+  sensitive = true
+}
+variable "secret_access_key" {
+  sensitive = true
+}
 
 variable "node_count" {
   description = "Defines the number of instances that will be provisioned."
