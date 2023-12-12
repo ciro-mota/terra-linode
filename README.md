@@ -40,7 +40,7 @@ export TF_VAR_public_key_path=$(cat /home/your-username/.ssh/id_rsa.pub)
 
 ## 🔧 Stackscripts
 
-You can also apply post-installation scripts to your Linode instance through Stackscripts. This project counts as example scripts for `nginx` provisioning.
+You can also apply post-installation scripts to your Linode instance through Stackscripts. This project counts as example scripts for `nginx` provisioning provided by Ansible Galaxy.
 
 You can create your own script and send it into the instance via the `bash <(curl -sk URL)` line in the `resources.tf` file.
 
@@ -48,34 +48,23 @@ To work with these settings, uncomment line `10` in the `instance.tf` file.
 
 ## 💾 Remote state
 
-Linode clearly does not have an official backend for remote state so adaptation is necessary to work with this feature. For the two options below, you must manually create a bucket in Object Storage and [create Access Keys](https://www.linode.com/docs/products/storage/object-storage/guides/access-keys/) for it.
+By default this block will be commented. Uncomment if you use it.
 
-### Option A
+Linode clearly does not have an official backend for remote state, so adaptation is necessary to work with this feature. You must manually create a bucket in Object Storage and [create Access Keys](https://www.linode.com/docs/products/storage/object-storage/guides/access-keys/) for it.
 
 Linode Object Storage supports S3-compatible applications, so the `aws cli` is supported for file handling with Linode.
 
-- Install it.
+- Install `aws cli`.
 - Run the command `aws configure` for configuration.
-- When prompted, enter the `aws_access_key_id` and `aws_secret_access_key` provided by Linode. The region field can be left blank.
-- Activate bucket versioning with the command below:
+- When prompted, enter the `access_key_id` and `secret_access_key` provided values obtained earlier. The region field can be left blank.
+- Add the same variables to your `.bashrc` or `.zshrc` file by filling them in with the Access Keys values obtained earlier:
 
 ```bash
-aws s3api put-bucket-versioning --endpoint=<your-endpoint-region>.linodeobjects.com --bucket=<your-bucket-name> --versioning-configuration Status=Enabled
+export TF_VAR_access_key_id=<your credentials>
+export TF_VAR_secret_access_key=<your credentials>
 ```
 
-- In the `resources.tf` file, uncomment lines `45` to `52`.
-- On line `49` change the to the **name of your bucket** and the **region** chosen when creating the bucket.
-
-Terraform will, after provisioning the requested resources run `aws-cli` to send the `terraform.tfstate` file to a previously created bucket and maintaining data persistence after `destroy`.
-
-### Option B
-
-You can also use Linode's own tool to handle files in Object Storage. You will need to have `linode-cli` configured and the `boto3` library installed.
-
-- In the `resources.tf` file, uncomment lines `54` to `61`.
-- On line `58` change the `cluster` parameters to the **name of your bucket** and the **region** chosen when creating the bucket.
-
-Terraform will, after provisioning the requested resources, run `linode-cli` to send the `terraform.tfstate` file to a previously created bucket. This method unfortunately **does not persist the files in the bucket** after `destroy`.
+- Edit lines `11`, `17` and `19` of the `main.tf` file with the information about your bucket and the region in which it was created.
 
 ## 🎁 Sponsoring
 
