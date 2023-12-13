@@ -65,6 +65,7 @@ export TF_VAR_access_key_id=<your credentials>
 export TF_VAR_secret_access_key=<your credentials>
 ```
 
+- Uncomment lines `8` to `13` of the `variables.tf` file.
 - Edit lines `11`, `17` and `19` of the `main.tf` file with the information about your bucket and the region in which it was created.
 
 ## 🎁 Sponsoring
