@@ -19,10 +19,12 @@ elif [ -f /etc/alpine-release ]; then
  apk update && apk add ansible
 
 else
-  echo "Unsuported Distro." 
+  echo "Unsuported Distro."
 fi
 
 tee -a requirements.yml <<'EOF'
+---
+- src: dev-sec.ssh-hardening
 - src: nginxinc.nginx
 EOF
 
@@ -31,7 +33,18 @@ tee -a playbook.yml <<'EOF'
 - name: "Provision Nginx"
   hosts: localhost
   become: true
+  vars:
+    ssh_kex:
+     - sntrup761x25519-sha512@openssh.com
+     - curve25519-sha256@libssh.org
+     - diffie-hellman-group-exchange-sha256
+    ssh_server_ports: ['22']
+    ssh_permit_root_login: "without-password"
+    ssh_use_pam: "true"
+    sshd_authenticationmethods: "publickey"
+    ssh_authorized_keys_file: ".ssh/authorized_keys"
   roles:
+    - dev-sec.ssh-hardening
     - nginxinc.nginx
 EOF
 
