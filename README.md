@@ -4,13 +4,13 @@
     <img alt="License" src="https://img.shields.io/badge/License-GPLv3-blue.svg?style=for-the-badge" />
     <img alt="Linode" src="https://img.shields.io/badge/Linode-00A95C?style=for-the-badge&logo=Linode&logoColor=white" />
     <img alt="Terraform" src="https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white" />
+    <img alt="OpenTofu" src="https://img.shields.io/badge/OpenTofu-FFDA18?logo=opentofu&logoColor=000&style=for-the-badge" />
     <img alt="Ansible" src="https://img.shields.io/badge/Ansible-000000?style=for-the-badge&logo=ansible&logoColor=white" />
     <img alt="Red Hat" src="https://img.shields.io/badge/Red%20Hat-EE0000?style=for-the-badge&logo=redhat&logoColor=white" />
     <img alt="Debian" src="https://img.shields.io/badge/Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white" />
     <img alt="Ubuntu" src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" />
     <img alt="Alpine" src="https://img.shields.io/badge/Alpine_Linux-0D597F?style=for-the-badge&logo=alpine-linux&logoColor=white" />
     <img alt="Shell Script" src="https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white" />
-    <img alt="Last Commit" src="https://img.shields.io/github/last-commit/ciro-mota/terra-linode?style=for-the-badge" />
 </p>
 
 
@@ -22,9 +22,10 @@ Linode charges you for the use of VMs [even if they are in a powered off state](
 
 ## 📌 Before executing:
 
-1. It is necessary to get credentials for Terraform execution.
+> [!NOTE]\
+> It is necessary to get credentials for Terraform execution.
 
-- Create a [Linode Personal Access Token](https://www.linode.com/docs/products/tools/api/guides/manage-api-tokens/).
+1. Create a [Linode Personal Access Token](https://www.linode.com/docs/products/tools/api/guides/manage-api-tokens/).
 
 2. Add two variables to your `.bashrc` or `.zshrc` file:
 
@@ -51,12 +52,12 @@ To work with these settings, uncomment line `10` in the `instance.tf` file.
 
 By default this block will be commented. Uncomment if you use it.
 
-Linode clearly does not have an official backend for remote state, so adaptation is necessary to work with this feature. You must manually create a bucket in Object Storage and [create Access Keys](https://www.linode.com/docs/products/storage/object-storage/guides/access-keys/) for it.
+You must manually create a bucket in Object Storage and [create Access Keys](https://www.linode.com/docs/products/storage/object-storage/guides/access-keys/) for it.
 
 Linode Object Storage supports S3-compatible applications, so the `aws cli` is supported for file handling with Linode.
 
 - Install `aws cli`.
-- Run the command `aws configure` for configuration.
+- Run the command `aws configure --profile linode` for configuration.
 - When prompted, enter the `access_key_id` and `secret_access_key` provided values obtained earlier. The region field can be left blank.
 - Add the same variables to your `.bashrc` or `.zshrc` file by filling them in with the Access Keys values obtained earlier:
 
