@@ -63,5 +63,5 @@ if [ -f /etc/debian_version ]; then
 elif [ -f /etc/redhat-release ]; then
   printf "<h1>DigitalOcean - It Works</h1>" > /usr/share/nginx/html/index.html
 else
-  echo "Unsuported Distro."
+  printf "Unsuported Distro."
 fi
