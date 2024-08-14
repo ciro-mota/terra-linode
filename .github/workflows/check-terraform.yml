@@ -30,4 +30,4 @@ jobs:
         continue-on-error: true
 
       - name: Check code with tfsec
-        uses: aquasecurity/tfsec-action@v1.0.0
+        uses: aquasecurity/tfsec-action@v1.0.3
