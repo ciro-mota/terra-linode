@@ -12,5 +12,5 @@ resource "linode_instance" "terraform-github" {
   #   destination = "/tmp/index.html.j2"
   # }
 
-  # stackscript_id = linode_stackscript.stack.id # Switch to the stackscript you would like to deploy based on the distro used.
+  # stackscript_id = linode_stackscript.stack.id # Switch to stackscript if you would like deployments based on the distribution used.
 }
