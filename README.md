@@ -48,7 +48,7 @@ You can also apply post-installation scripts to your Linode instance through Sta
 
 You can create your own script and send it into the instance via the `bash <(curl -sk URL)` line in the `resources.tf` file.
 
-To work with these settings, uncomment line `10` in the `instance.tf` file.
+To work with these settings, uncomment lines `10` to `15` in the `instance.tf` file.
 
 ## 💾 Remote state
 
