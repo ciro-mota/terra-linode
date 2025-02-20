@@ -7,5 +7,10 @@ resource "linode_instance" "terraform-github" {
   authorized_keys = [var.public_key_path]
   root_pass       = random_password.password.result
 
-  #  stackscript_id = linode_stackscript.stack.id # Switch to the stackscript you would like to deploy based on the distro used.
+  # provisioner "file" {
+  #   source      = "files/index.html.j2"
+  #   destination = "/tmp/index.html.j2"
+  # }
+
+  # stackscript_id = linode_stackscript.stack.id # Switch to the stackscript you would like to deploy based on the distro used.
 }
