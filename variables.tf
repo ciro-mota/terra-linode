@@ -17,24 +17,39 @@ variable "node_count" {
   default     = 1
 }
 
-variable "image" {
-  type        = string
-  description = "Linode Image type to use. See linode-available-resources.txt file for available images."
-  default     = "linode/debian12"
-}
 variable "label" {
   type        = string
   description = "The name you want for your Linode instance."
   default     = "Terra_Linode"
 }
+variable "image" {
+  type        = string
+  description = <<EOT
+        Linode Image type to use. Send to list all available images:
+        curl --request GET \
+        --url 'https://api.linode.com/v4/images?page=1&page_size=100' \
+        --header 'accept: application/json' | jq '.data[].id'
+  EOT
+  default     = "linode/debian12"
+}
 
 variable "linode_region" {
   type        = string
-  description = "Linode available regions to use. See linode-available-resources.txt file for available regions."
+  description = <<EOT
+        Linode available regions to use. Send to list all available regions:
+        curl --request GET \
+        --url https://api.linode.com/v4/regions \
+        --header 'accept: application/json' | jq '.data[].id'
+        EOT
   default     = "us-east"
 }
 variable "linode_instance_type" {
   type        = string
-  description = "Linode machine types to use. See linode-available-resources.txt file for instance types."
+  description = <<EOT
+        Linode machine types to use. Send to list all available instance types:
+        curl --request GET \
+        --url https://api.linode.com/v4/linode/types \
+        --header 'accept: application/json' | jq '.data[].id'
+        EOT
   default     = "g6-nanode-1"
 }
