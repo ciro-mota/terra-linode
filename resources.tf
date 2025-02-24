@@ -11,6 +11,7 @@ resource "linode_stackscript" "stack" {
   is_public   = false
   script      = <<EOF
 #!/bin/sh
+wget https://raw.githubusercontent.com/ciro-mota/terra-linode/refs/heads/main/files/index.html.j2 -P /tmp
 curl -sk https://raw.githubusercontent.com/ciro-mota/terra-linode/main/files/nginx.sh | sh
 EOF
   images = ["linode/ubuntu24.04", "linode/ubuntu22.04",
