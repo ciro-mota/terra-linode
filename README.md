@@ -6,12 +6,10 @@
     <img alt="Terraform" src="https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white" />
     <img alt="OpenTofu" src="https://img.shields.io/badge/OpenTofu-FFDA18?logo=opentofu&logoColor=000&style=for-the-badge" />
     <img alt="Ansible" src="https://img.shields.io/badge/Ansible-000000?style=for-the-badge&logo=ansible&logoColor=white" />
-    <img alt="AlmaLinux" src="https://img.shields.io/badge/AlmaLinux-000?logo=almalinux&logoColor=fff&style=for-the-badge" />
-    <img alt="Rocky Linux" src="https://img.shields.io/badge/Rocky%20Linux-10B981?logo=rockylinux&logoColor=fff&style=for-the-badge" />
-    <img alt="CentOS" src="https://img.shields.io/badge/CentOS-262577?logo=centos&logoColor=fff&style=for-the-badge" />
     <img alt="Debian" src="https://img.shields.io/badge/Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white" />
     <img alt="Ubuntu" src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" />
-    <img alt="Alpine" src="https://img.shields.io/badge/Alpine_Linux-0D597F?style=for-the-badge&logo=alpine-linux&logoColor=white" />
+    <img alt="AlmaLinux" src="https://img.shields.io/badge/AlmaLinux-000?logo=almalinux&logoColor=fff&style=for-the-badge" />
+    <img alt="Rocky Linux" src="https://img.shields.io/badge/Rocky%20Linux-10B981?logo=rockylinux&logoColor=fff&style=for-the-badge" />
     <img alt="Shell Script" src="https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white" />
 </p>
 
@@ -39,16 +37,16 @@ export TF_VAR_public_key_path=$(cat /home/your-username/.ssh/id_rsa.pub)
 ## 💻 Usage
 
 - Clone this repo.
-- By default an instance with **Debian 12** with `g6-nanode-1` will be provisioned, if you want another OS or machine, modify the `variables.tf` files if you wish.
+- By default an instance with **Debian 12** with `g6-nanode-1` will be provisioned, if you want another OS or machine modify the `modules/linode/variables.tf` files if you wish.
 - Run `terraform init`, `terraform plan -out= name-of-the-plan` and `terraform apply`. At the end, `terraform destroy`
 
 ## 🔧 Stackscripts
 
 You can also apply post-installation scripts to your Linode instance through Stackscripts. This project counts as example scripts for `nginx` provisioning provided by Ansible Galaxy.
 
-You can create your own script and send it into the instance via the `bash <(curl -sk URL)` line in the `resources.tf` file.
+You can create your own script and upload it to the instance via the `.sh` file that will be called on line 12 of the `modules/linode/resources.tf` file.
 
-To work with these settings, uncomment lines `10` to `15` in the `instance.tf` file.
+To work with these settings uncomment line `10` in the `modules/linode/instance.tf` file.
 
 ## 💾 Remote state
 
@@ -69,7 +67,7 @@ export TF_VAR_secret_access_key=<your credentials>
 ```
 
 - Uncomment lines `8` to `13` of the `variables.tf` file.
-- Edit lines `11`, `17` and `19` of the `main.tf` file with the information about your bucket and the region in which it was created.
+- Uncomment and edit lines `11`, `17` and `19` of the `main.tf` file with the information about your bucket and the region in which it was created.
 
 ## 🎁 Sponsoring
 
