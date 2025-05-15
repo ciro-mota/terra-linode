@@ -3,7 +3,7 @@ terraform {
   required_providers {
     linode = {
       source  = "linode/linode"
-      version = "2.34.1"
+      version = "2.39.0"
     }
   }
 
@@ -19,4 +19,10 @@ terraform {
   #   region                      = "us-east-1"
   # }
 
+}
+
+module "linode" {
+  source           = "./modules/linodes"
+  LINODE_CLI_TOKEN = var.LINODE_CLI_TOKEN
+  public_key_path  = var.public_key_path
 }
