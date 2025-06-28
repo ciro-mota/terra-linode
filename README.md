@@ -38,7 +38,18 @@ export TF_VAR_public_key_path=$(cat /home/your-username/.ssh/id_rsa.pub)
 
 - Clone this repo.
 - By default an instance with **Debian 12** with `g6-nanode-1` will be provisioned, if you want another OS or machine modify the `modules/linode/variables.tf` files if you wish.
-- Run `terraform init`, `terraform plan -out= name-of-the-plan` and `terraform apply`. At the end, `terraform destroy`
+- Run `terraform init`, `terraform plan -out= name-of-the-plan` and `terraform apply`. At the end, `terraform destroy`.
+
+> [!TIP]
+> If you receive the following error when connecting to your instance:
+> ```
+> Received disconnect from 45.xx.xx.xx port 22:2: Too many authentication failures
+> Disconnected from 45.xx.xx.xx port 22
+> ```
+> Run the following command to access:
+> ```bash
+> ssh -o IdentitiesOnly=yes root@45.33.83.190 -i .ssh/id_rsa.pub
+>```
 
 ## 🔧 Stackscripts
 
