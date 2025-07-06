@@ -48,7 +48,7 @@ export TF_VAR_public_key_path=$(cat /home/your-username/.ssh/id_rsa.pub)
 > ```
 > Run the following command to access:
 > ```bash
-> ssh -o IdentitiesOnly=yes root@45.33.83.190 -i .ssh/id_rsa.pub
+> ssh -o IdentitiesOnly=yes root@45.xx.xx.xx -i .ssh/id_rsa.pub
 >```
 
 ## 🔧 Stackscripts
