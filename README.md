@@ -79,9 +79,3 @@ export TF_VAR_secret_access_key=<your credentials>
 
 - Uncomment lines `8` to `13` of the `variables.tf` file.
 - Uncomment and edit lines `11`, `17` and `19` of the `main.tf` file with the information about your bucket and the region in which it was created.
-
-## 🎁 Sponsoring
-
-If you like this work, give me it a star on GitHub, and consider supporting it buying me a coffee:
-
-[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/donate/?business=VUS6R8TX53NTS&no_recurring=0&currency_code=USD)
